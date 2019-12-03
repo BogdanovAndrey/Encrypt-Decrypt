@@ -1,0 +1,36 @@
+package encryptdecrypt;
+
+import java.io.CharArrayReader;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+       // System.out.println("Введите сообщение:");
+        String message = scanner.nextLine();
+       // System.out.println("Введите ключ:");
+
+        int key = scanner.nextInt();
+        key = key % 26;
+        String bufString = new String();
+        char[] buf = message.toCharArray();
+        for (int i = 0; i < buf.length; i++) {
+            char newLetter = buf[i];
+            if (Character.isAlphabetic(buf[i])) {
+                newLetter = (char) (buf[i] + key);
+                if (Character.isLowerCase(buf[i]) && !Character.isLowerCase(newLetter)) {
+                    newLetter = (char) (newLetter - 26);
+                }
+                if (!Character.isLowerCase(buf[i]) && !Character.isAlphabetic(newLetter)) {
+                    newLetter = (char) (newLetter - 26);
+                }
+            }
+            bufString += newLetter;
+        }
+        System.out.println(bufString);
+
+
+    }
+}
+//abcdefghijklm
+//zyxwvutsrqpon
